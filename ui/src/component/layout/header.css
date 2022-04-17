@@ -1,0 +1,64 @@
+.header_container{
+    height: 11vh;
+    background: #445;
+   
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+.logo{
+    width: 20%;
+    height: 97%;
+    text-align: center;
+    background: #fff;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 3px;
+
+}
+.links_container{
+    display: flex;
+    width: 50%;
+
+}
+.links{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+}
+.links li{
+    list-style: none;
+    cursor: pointer;
+    color: white;
+}
+.login{
+    margin-top: 6px;
+    height: 80%;
+}
+
+
+.rightsideheader{
+    width: 15vw;
+    display: flex;
+    background: #000;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+.account{
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+}
+
+.logout{
+    background-color: rgb(173, 170, 166);
+    height: 45%;
+    width: 40%;
+    text-align: center;
+    align-items: center;
+}
