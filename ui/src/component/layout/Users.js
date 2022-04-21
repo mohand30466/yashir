@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Api } from "../service/Api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+// import {   } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+
 const Users = () => {
   const [data, setData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const style = {
     usercontainer: {
@@ -30,10 +31,9 @@ const Users = () => {
       background: "#0008",
       marginLeft: "10px",
     },
-    nav:{
-        textDecoration:"none"
-
-    }
+    nav: {
+      textDecoration: "none",
+    },
   };
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const Users = () => {
       .then((res) => setData(res))
       .catch((err) => console.log(err.message));
   }, []);
-  console.log(data);
 
   return (
     <div>
@@ -51,24 +50,30 @@ const Users = () => {
           data.map((item) => {
             return (
               <>
-                
-                  <div style={style.usercontainer} onClick={e=>navigate("/userdetail",{state:item})}>
-                    <div>
-                      <img style={style.avatar} src={item.profile.image} />
-                    </div>
-                    <div style={style.info}>
-                      <p>{item.username}</p>
-                      <p>{item.profile.profisional}</p>
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                    </div>
+                <div
+                  style={style.usercontainer}
+                  onClick={(e) => navigate("/userdetail", { state: item })}
+                  key={item.id}
+                >
+                  <div>
+                    <img
+                      style={style.avatar}
+                      src={item.profile && item.profile.image}
+                      alt={item.avatar}
+                    />
                   </div>
-               
+                  <div style={style.info}>
+                    <p>{item.username}</p>
+                    <p>{item.profile && item.profile.profisional}</p>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                  </div>
+                </div>
               </>
             );
           })}

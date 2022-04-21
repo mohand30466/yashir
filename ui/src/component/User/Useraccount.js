@@ -11,32 +11,28 @@ function UserAcount(props) {
   const [newPassword, setnewPassword] = useState("");
   const [repeatPassword, setrebeatPassword] = useState("");
   const [msg, setMsg] = useState("");
+  console.log(data);
 
-  const isMatch = newPassword == repeatPassword;
+  const isMatch = newPassword === repeatPassword;
 
   const updatePassword = async (e) => {
     e.preventDefault();
-    // setpassword(!pass);
-    setpassword(!pass)
-    if (isMatch&&newPassword.length>2){
+    setpassword(!pass);
+    if (isMatch && newPassword.length > 2) {
       const updatepass = await Api.ChangePassword(
-        { oldPassword:oldPassword, newPassword:newPassword },
+        { oldPassword: oldPassword, newPassword: newPassword },
         data.user.id
       );
       console.log(updatepass);
-      
-      setMsg(updatepass.message);
-      setnewPassword("")
-      setrebeatPassword("")
 
-      
+      setMsg(updatepass.message);
+      setnewPassword("");
+      setrebeatPassword("");
+    } else {
+      setMsg(
+        "enter the old password and new pass in order to update you password"
+      );
     }
-   
-    else {
-      setMsg("enter the old password and new pass in order to update you password")
-    }
-    
-   
   };
 
   return (
@@ -44,7 +40,7 @@ function UserAcount(props) {
       <div className="left">
         <div className="avatarcontainer">
           <div className="avatar">
-            <img src={url + data.user.profile.image} alt="#" />
+            <img src={url + data.user.profile.image} alt={data.id} />
           </div>
           <div>
             <p>{data.user.username}</p>
@@ -52,19 +48,15 @@ function UserAcount(props) {
         </div>
         <div className="adjectives">
           <div className="profisional">
-            <p>{data.user.profile.profisional}</p>
+            <h3>{data.user.profile.profisional}</h3>
           </div>
           <div>
-            <p>{data.user.profile.bio}</p>
+            <p>{data.user ? data.user.profile.bio : data.profile.bio}</p>
           </div>
           <div>
             <button>
-              <Link to="/updateaccount" 
-             >
-              Updata account
-              </Link>
-              
-              </button>
+              <Link to="/updateaccount">Updata account</Link>
+            </button>
           </div>
         </div>
       </div>
@@ -80,7 +72,7 @@ function UserAcount(props) {
         </div>
 
         <div>
-          <p>open to work</p>
+          <p>Open to work</p>
         </div>
         <div>
           <p> Rates</p>

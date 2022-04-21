@@ -2,16 +2,14 @@ import React from "react";
 import "./App.css";
 import Main from "./component/layout/Main";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./component/layout/Header";
+import {Header} from "./component/layout/Header";
 import Signin from "./component/auth/SingIn/SignIn";
 import SignUp from "./component/auth/SignUp/SignUp";
 import UserProfile from "./component/auth/Userprofile/Userprofile";
 import UserAcount from "./component/User/Useraccount";
 import Updateaccount from "./component/User/Updateaccount";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
 import { AuthProvider } from "./component/useContex/Contex";
-import { useAuth } from "./component/useContex/Contex";
 import Home from "./component/layout/Home";
 import Userdetail from "./component/layout/Userdetail";
 
@@ -22,11 +20,11 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
+    
 
         <AuthProvider user={user}>
           <Routes>
             <Route path="/" element={<Main />} />
-
             <Route path="signin" element={<Signin />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="profile" element={<UserProfile />} />

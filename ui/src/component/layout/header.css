@@ -1,7 +1,6 @@
 .header_container{
     height: 11vh;
     background: #445;
-   
 }
 .header{
     display: flex;
@@ -9,16 +8,21 @@
     justify-content: space-between;
     height: 100%;
 }
-.logo{
-    width: 20%;
-    height: 97%;
-    text-align: center;
-    background: #fff;
-    border: 1px solid black;
-    cursor: pointer;
-    border-radius: 3px;
 
+
+.logo{
+    width: 13%;
+    height: 99%;
+    background-image: url('./images/Yashirlogo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:60%;
+    cursor: pointer;
+    margin-left: -8px;
 }
+/* .logo a {
+    text-decoration: none;
+} */
 .links_container{
     display: flex;
     width: 50%;
@@ -27,18 +31,17 @@
 .links{
     display: flex;
     width: 100%;
-    justify-content: space-between;
-
+    justify-content: space-around;
+    align-items: center;
+}
+.links a {
+    text-decoration: none;
 }
 .links li{
     list-style: none;
     cursor: pointer;
-    color: white;
 }
-.login{
-    margin-top: 6px;
-    height: 80%;
-}
+
 
 
 .rightsideheader{
@@ -55,10 +58,37 @@
     border-radius: 50%;
 }
 
-.logout{
-    background-color: rgb(173, 170, 166);
-    height: 45%;
-    width: 40%;
-    text-align: center;
+.auth{
+    width: 20vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.login{
+   
+
+    height: 80%;
+    width: 40%;
+    background:lightblue;
+    border: 1px solid red;
+    height: 50%;
+    border-radius: 2px;
+}
+.login a{
+    text-decoration: none;
+}
+.logout{
+    text-align: center;
+    height: 80%;
+    width: 40%;
+    background:lightblue;
+    border: 1px solid red;
+    height: 50%;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+.logout a {
+    text-decoration: none;
 }

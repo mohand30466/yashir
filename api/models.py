@@ -23,7 +23,7 @@ class Userprofile(models.Model):
 
 class BlogPost(models.Model):
       
-    user = models.ManyToManyField(User,related_name="bost")
+    user = models.ForeignKey(User,related_name="bost", on_delete=models.CASCADE)
     tittle = models.CharField(max_length=150, blank=False)
     discription = models.CharField(max_length=350, blank=False)
     image =  models.ImageField(upload_to =upload_file_to,default="static/Media/Yashirlogo.png", blank=True, null=True)

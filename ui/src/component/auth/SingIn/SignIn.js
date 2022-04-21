@@ -3,52 +3,147 @@ import { Api } from "../../service/Api";
 import { useAuth } from "../../useContex/Contex";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link to = "/" color="inherit" href="https://mui.com/">
+        www.yashirmanpower.com
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { userdata, setUserdata } = useAuth();
+  const {  setUserdata } = useAuth();  
   const navigate = useNavigate();
+  const classes = useStyles();
 
   const Signinclick = async (e) => {
     e.preventDefault();
     const authData = await Api.Login({ username, password }).then((res) => {
-      setUserdata(res.user&&res.user.profile.id);
-      localStorage.setItem('data', JSON.stringify(res));
-      console.log(res.user);
-      if (res.token) navigate("/account", { data: res });
+      setUserdata(res.user && res.user.profile.id);
+      localStorage.setItem("data", JSON.stringify(res));
+      if (res.token) navigate("/home", { data: res });
       else {
       }
     });
   };
   return (
-    <div>
-      <p>{userdata && <>{userdata}</>}</p>
-      <form onSubmit={Signinclick}>
-        <h1>welcome back</h1>
-        <label>Username</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Username"
+    
+    <div> 
+    
+    <Container component="main" maxWidth="xs">
+    <CssBaseline />
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+      <form className={classes.form} onSubmit={Signinclick} noValidate>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="username"
+          name="email"
+          autoComplete="email"
           onChange={(e) => setUsername(e.target.value)}
+          autoFocus
         />
-        <br />
-        <label>Password</label>
-        <br />
-        <input
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
           type="password"
-          placeholder="password"
+          id="password"
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
         />
-        <br />
-        <button type="supmit">Sign in</button>
-        <br/>
-        <Link to={"/signup"}>Dont have account click here</Link>
-        <p>{}</p>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          Sign In
+        </Button>
+
+        <Grid container>
+          <Grid item xs>
+            <Link to={"/"} variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to={"/signup"} variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+        </Grid>
       </form>
     </div>
-  );
+    <Box mt={5}>
+        <Copyright />
+      </Box>
+    {/* <Box mt={8}>
+      <Copyright />
+    </Box> */}
+  </Container>
+  </div>
+   
+  )
 };
 
 export default SignIn;

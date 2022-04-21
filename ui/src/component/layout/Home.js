@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Api } from "../service/Api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {
   faHeart,
   faThumbsUp,
@@ -56,7 +55,7 @@ export default function Home() {
     },
     create: {
       width: "40vw",
-      height: "100px",
+      height: "150px",
       display: "flex",
       justifyContent: "center",
       alignItem: "center",
@@ -83,7 +82,7 @@ export default function Home() {
     const bostData = Api.GetBosts()
       .then((res) => setData(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, [open]);
 
   const openPostWindow = () => setOpen(!open);
 
@@ -95,7 +94,7 @@ export default function Home() {
     uploadidata.append("discription", discription);
 
     const post = Api.Bost(id, uploadidata)
-      .then((res) => console.log(res))
+      .then((res) =>{if(res.id)setOpen(!open)})
       .catch((err) => console.log(err));
   };
 
