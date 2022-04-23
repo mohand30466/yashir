@@ -3,7 +3,7 @@ from turtle import bk
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from .models import Userprofile, BlogPost
+from .models import Userprofile, BlogPost,Likes,Message
 
 
 class UpdatepassSerializer(serializers.Serializer):
@@ -14,7 +14,7 @@ class UpdatepassSerializer(serializers.Serializer):
 class User_profile_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Userprofile
-        fields = ['id',"image","address","phone","profisional","bio" ]
+        fields = ['id',"image","address","phone","profisional","bio","mymessage" ]
     
    
 class UserSerializer(serializers.ModelSerializer):
@@ -35,7 +35,19 @@ class UserSerializer(serializers.ModelSerializer):
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ['id','tittle','discription','image']
+        fields = ['id','tittle','discription','image',"numoflikes"]
+        
+        
+class LikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Likes
+        fields = ['id','user','post','like']
+        
+        
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['id','user','profile','msg']
         
         
         

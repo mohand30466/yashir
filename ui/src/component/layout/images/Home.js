@@ -5,20 +5,17 @@ import {
   faHeart,
   faThumbsUp,
   faSquarePlus,
-  faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Users from "./Users";
-import Likes from "./Likes";
+
 export default function Home() {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [tittle, setTittle] = useState();
   const [discription, setDiscription] = useState();
   const [image, setImage] = useState();
-  const [like, setlike] = useState(2);
   const db = JSON.parse(localStorage.getItem("data"));
   const id = db.user.id;
-
 
   const style = {
     width: "37.5vw",
@@ -40,11 +37,10 @@ export default function Home() {
       Height: "50vh",
       justifyContent: "center",
       alignItem: "center",
-      // border: "gray 1px solid",
-      borderRadious: "2px",
+      background: "#8888",
+      border: "red 2px solid",
       overFlow: "hidden",
       margen: "10px",
-      
     },
     post: {
       display: "flex",
@@ -52,8 +48,9 @@ export default function Home() {
       margen: "10px",
       justifyContent: "center",
       alignItem: "center",
-      color: "blue",
-      // border: "red 1px solid",
+      background: "#00001",
+      color: "red",
+      border: "red 1px solid",
       flexDirection: "column",
     },
     create: {
@@ -71,17 +68,21 @@ export default function Home() {
     },
     fontAwsome: {
       color: "blue",
-      fontSize: "2rem",
+      fontSize: "3rem",
       margin: "10px",
     },
     userpro: {
       width: "30vw",
       height: "100vh",
-   
-    },
+      background: "#00001",
+    }
   };
 
-
+  useEffect(() => {
+    const bostData = Api.GetBosts()
+      .then((res) => setData(res))
+      .catch((err) => console.log(err));
+  }, [open]);
 
   const openPostWindow = () => setOpen(!open);
 
@@ -91,29 +92,11 @@ export default function Home() {
     uploadidata.append("image", image, image.name);
     uploadidata.append("tittle", tittle);
     uploadidata.append("discription", discription);
-    
-    const posts = Api.Bost(id, uploadidata)
-      .then((res) => {
-        console.log(res)
-        if (res.id) setOpen(!open);
-      })
-      .catch((err) => console.log("hello theres some err!"));
-  };
-  
-  useEffect(() => {
-    const bostData = Api.GetBosts()
-      .then((res) => setData(res))
+
+    const post = Api.Bost(id, uploadidata)
+      .then((res) =>{if(res.id)setOpen(!open)})
       .catch((err) => console.log(err));
-  }, []);
-   
-  const sendlikeclicked =(post)=>{
-    const sendlike = Api.Sendlikes({user:id,post,like})
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
-    
-  }
-
-
+  };
 
   return (
     <div style={style.bostContainer}>
@@ -161,18 +144,14 @@ export default function Home() {
                     <p>{item.discription}</p>
                     <img style={style} src={item.image} alt="#" />
                     <div style={style.rate}>
-                      <div>
-                        
-                        <span onClick={e=>sendlikeclicked(item.id)}> 
-                        {item.numoflikes}
-                        <Likes db={faThumbsUp} style={style.fontAwsome}/>
-                        </span>
-                      </div>
-                      <div>
-                        <span> 
-                        <Likes db={faHeart} style={style.fontAwsome} />
-                        </span>
-                      </div>
+                      <FontAwesomeIcon
+                        style={style.fontAwsome}
+                        icon={faHeart}
+                      />
+                      <FontAwesomeIcon
+                        style={style.fontAwsome}
+                        icon={faThumbsUp}
+                      />
                     </div>
                   </div>
                 </>

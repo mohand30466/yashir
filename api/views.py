@@ -1,12 +1,12 @@
 from urllib import request, response
-from .serialiers import UserSerializer,User_profile_Serializer,UpdatepassSerializer,BlogPostSerializer
+from .serialiers import UserSerializer,User_profile_Serializer,UpdatepassSerializer,BlogPostSerializer,LikesSerializer,MessageSerializer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework import status
-from . models import BlogPost, Userprofile
+from . models import BlogPost, Userprofile,Likes,Message
 from rest_framework.decorators import action
 
 
@@ -48,9 +48,19 @@ class User_profile_ViewSet(viewsets.ModelViewSet):
     serializer_class = User_profile_Serializer
         
     
-class BlogPoarViewSer(viewsets.ModelViewSet):
+class BlogPoarViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+    
+    
+        
+class LikesViewSet(viewsets.ModelViewSet):
+    queryset = Likes.objects.all()
+    serializer_class = LikesSerializer
+    
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
     
     
         

@@ -40,7 +40,7 @@ export class Api {
 
   static GetBosts() {
     
-    return fetch(`http://127.0.0.1:8000/bosts/`, {
+    return fetch(`http://127.0.0.1:8000/posts/`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,6 +58,32 @@ export class Api {
   static Getusers() {
     
     return fetch(`http://127.0.0.1:8000/users/`, {
+    
+    }).then((res) => res.json());
+  }
+
+  static Sendlikes(body) {
+    return fetch(`http://127.0.0.1:8000/like/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }).then((res) => res.json());
+  }
+  static Messages(body) {
+    return fetch(`http://127.0.0.1:8000/msg/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }).then((res) => res.json());
+  }
+
+  static GetMessages() {
+    
+    return fetch(`http://127.0.0.1:8000/msg/`, {
     
     }).then((res) => res.json());
   }

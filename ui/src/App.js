@@ -12,7 +12,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./component/useContex/Contex";
 import Home from "./component/layout/Home";
 import Userdetail from "./component/layout/Userdetail";
-
+import Messages from './component/layout/Messages'
 function App() {
   let user = "user";
 
@@ -32,6 +32,7 @@ function App() {
             <Route path="updateaccount" element={<Updateaccount />} />
             <Route path="home" element={<Home />} />
             <Route path="userdetail" element={<Userdetail />} />
+            <Route path="/messages" element={<Messages />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

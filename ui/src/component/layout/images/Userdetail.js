@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 const Userdetail = () => {
   const [active, setactive] = useState(true);
 
 
   const { state } = useLocation();
   const obj = {};
-  obj.user_id = state.id;
-  obj.profile_id = state.profile.id;
   obj.name = state.username;
   obj.email = state.email;
   obj.address = state.profile.address;
   obj.phone = state.profile.phone;
   obj.job = state.profile.profisional;
   obj.avatar = state.profile.image;
-  obj.messages = state.profile.mymessage;
-  const navigate = useNavigate()
 
   console.log(obj);
   const style = {
@@ -60,7 +54,7 @@ const Userdetail = () => {
             <p>{obj.address}</p>
             <p>{obj.phone}</p>
             <p>{obj.email}</p>
-            <button onClick={e=>navigate("/messages",{state:obj})}> <Link to="/messages">Send message </Link></button>
+            <button>Send message</button>
           </div>
         )}
       </div>
