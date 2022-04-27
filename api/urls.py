@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import UserViewSet, CustomObtainAuthToken,User_profile_ViewSet,BlogPoarViewSet,LikesViewSet,MessageViewSet
+from .views import UserViewSet, CustomObtainAuthToken,User_profile_ViewSet,BlogPoarViewSet,LikesViewSet,MessageViewSet,SendMessageToAppViewSet
 
 
 
@@ -10,6 +10,7 @@ router.register(r'userprofile', User_profile_ViewSet)
 router.register(r'posts', BlogPoarViewSet)
 router.register(r'like', LikesViewSet)
 router.register(r'msg', MessageViewSet)
+router.register(r'message', SendMessageToAppViewSet)
 
 
 

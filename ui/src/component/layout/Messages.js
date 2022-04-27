@@ -39,7 +39,7 @@ export default function componentName() {
   // console.log(profile,"this is the profile id",user);
 console.log(reciver);
   const SendMsgclick = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const messges = Api.Messages({user,profile,msg})
     .then(res=>{
       console.log(res)

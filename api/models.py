@@ -58,3 +58,11 @@ class Message(models.Model):
     def __str__(self): 
         return self.msg
 
+class SendMessageToApp(models.Model):   
+    
+    title  = models.CharField(max_length=500)
+    email  = models.EmailField(blank=False)
+    massage  = models.CharField(max_length=1500)
+ 
+    def __str__(self): 
+        return self.title

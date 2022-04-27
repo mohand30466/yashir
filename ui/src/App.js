@@ -13,6 +13,7 @@ import { AuthProvider } from "./component/useContex/Contex";
 import Home from "./component/layout/Home";
 import Userdetail from "./component/layout/Userdetail";
 import Messages from './component/layout/Messages'
+import ContactUs from "./component/User/Contactus";
 function App() {
   let user = "user";
 
@@ -25,14 +26,15 @@ function App() {
         <AuthProvider user={user}>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="signin" element={<Signin />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="profile" element={<UserProfile />} />
-            <Route path="account" element={<UserAcount />} />
-            <Route path="updateaccount" element={<Updateaccount />} />
-            <Route path="home" element={<Home />} />
-            <Route path="userdetail" element={<Userdetail />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/account" element={<UserAcount />} />
+            <Route path="/updateaccount" element={<Updateaccount />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/userdetail" element={<Userdetail />} />
             <Route path="/messages" element={<Messages />} />
+            <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
