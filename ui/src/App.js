@@ -14,6 +14,7 @@ import Home from "./component/layout/Home";
 import Userdetail from "./component/layout/Userdetail";
 import Messages from './component/layout/Messages'
 import ContactUs from "./component/User/Contactus";
+import Aboutus from "./component/layout/Aboutus"
 function App() {
   let user = "user";
 
@@ -35,6 +36,7 @@ function App() {
             <Route path="/userdetail" element={<Userdetail />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/About" element={<Aboutus />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
