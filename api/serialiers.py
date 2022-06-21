@@ -1,4 +1,3 @@
-# from importlib.metadata import requires
 from turtle import bk
 from django.contrib.auth.models import User
 from rest_framework import serializers
