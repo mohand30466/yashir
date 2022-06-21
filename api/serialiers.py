@@ -35,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ['id','tittle','discription','image',"numoflikes"]
+        fields = ['id','user','tittle','discription','image',"numoflikes"]
         
         
 class LikesSerializer(serializers.ModelSerializer):
@@ -56,6 +56,7 @@ class MSendMessageToAppSerializer(serializers.ModelSerializer):
         fields = ['id','title','email','massage']   
         
         
+
         
         
 

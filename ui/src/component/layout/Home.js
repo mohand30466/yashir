@@ -91,8 +91,9 @@ export default function Home() {
     uploadidata.append("image", image, image.name);
     uploadidata.append("tittle", tittle);
     uploadidata.append("discription", discription);
+    uploadidata.append("user", id);
     
-    const posts = Api.Bost(id, uploadidata)
+    const posts = Api.Bost(uploadidata)
       .then((res) => {
         console.log(res)
         if (res.id) setOpen(!open);

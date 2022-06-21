@@ -1,0 +1,1 @@
+web: gunicorn yashir.wsgi --log-file -

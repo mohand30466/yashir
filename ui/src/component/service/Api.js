@@ -47,10 +47,10 @@ export class Api {
     }).then((res) => res.json());
   }
 
-  static Bost(id,body) {
+  static Bost(body) {
     
-    return fetch(`http://127.0.0.1:8000/bosts/${id}/`, {
-      method:"PUT",
+    return fetch(`http://127.0.0.1:8000/posts/`, {
+      method:"POST",
       body: body
     }).then((res) => res.json());
   }

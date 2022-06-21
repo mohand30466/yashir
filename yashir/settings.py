@@ -10,8 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from distutils.command.config import config
+from email.policy import default
 import os
 from pathlib import Path
+from unittest import case
+from decouple import config 
+from dj_database_url import base as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-==(-du2j=z$sii5i^%4)mq+y17o(bbv&)6u4yp%a!p@j87su(v'
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -96,11 +100,10 @@ WSGI_APPLICATION = 'yashir.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+default_db = "sqlite:///"+ os.path.join(BASE_DIR,"db.sqlite3")
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default':config('DATABASES_URL', default= default_db, cast=dburl),
 }
 
 
@@ -139,7 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATICFILE_DIRS = os.path.join(BASE_DIR,"src/static")
 MEDIA_ROOT= 'static/media'
 MEDIA_URL= '/media/'
