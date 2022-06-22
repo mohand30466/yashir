@@ -16,7 +16,7 @@ router.register(r'message', SendMessageToAppViewSet)
 
 
 urlpatterns = [
-    path(r'', include(router.urls)),
+    path(r'/', include(router.urls)),
     path('auth/', CustomObtainAuthToken.as_view()),
 
     

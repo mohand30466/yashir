@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'yashir.wsgi.application'
 default_dburl = "sqlite:///"+ os.path.join(BASE_DIR,"db.sqlite3")
 
 DATABASES = {
-    'default':config('DATABASES_URL', default= default_dburl, cast=dburl),
+    'default':config('DATABASE_URL', default= default_dburl, cast=dburl),
 }
 
 
@@ -117,7 +117,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 STATICFILE_DIRS = os.path.join(BASE_DIR,"src/staticfiles")
 MEDIA_ROOT= 'staticfiles/media'
