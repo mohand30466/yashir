@@ -1,4 +1,3 @@
-from urllib import request, response
 from .serialiers import UserSerializer,User_profile_Serializer,UpdatepassSerializer,BlogPostSerializer,LikesSerializer,MessageSerializer,MSendMessageToAppSerializer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -6,7 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework import status
-from . models import BlogPost,Userprofile,Likes,Message,SendMessageToApp
+from .models import BlogPost,Userprofile,Likes,Message,SendMessageToApp
 from rest_framework.decorators import action
 
 
