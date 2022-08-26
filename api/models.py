@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from requests import post
 
 def upload_file_to(instance,filename):
     return f"{instance.user}/{filename}"
@@ -34,16 +35,16 @@ class BlogPost(models.Model):
     image =  models.ImageField(upload_to =upload_file_to,default="static/Media/Yashirlogo.png", blank=True, null=True)
     
     def numoflikes(self):
-        mylike = Likes.objects.filter(post=self.user)
+        mylike = Likes.objects.filter(user=self.user)
         return len(mylike)
    
     
     def __str__(self): 
-        return f"{self.user} Post"
+        return f"{self.tittle} Post"
     
 class Likes(models.Model):   
     user = models.ForeignKey(User,related_name="likeUser", on_delete=models.CASCADE)
-    post = models.ForeignKey(User,related_name="likeBost", on_delete=models.CASCADE)
+    post = models.ForeignKey(BlogPost,related_name="likeBost", on_delete=models.CASCADE)
     like  = models.IntegerField(default=1)
  
     def __str__(self): 
